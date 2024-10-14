@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Enchanted - Taylor Swift</title>
+    <style>
+      :root {
+        --dark-color: #000;
+      }
+
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-image: radial-gradient(
+            ellipse at top,
+            transparent 0%,
+            var(--dark-color)
+          ),
+          radial-gradient(
+            ellipse at bottom,
+            var(--dark-color),
+            rgba(145, 233, 255, 0.2)
+          ),
+          repeating-linear-gradient(
+            220deg,
+            rgb(0, 0, 0) 0px,
+            rgb(0, 0, 0) 19px,
+            transparent 19px,
+            transparent 22px
+          ),
+          repeating-linear-gradient(
+            189deg,
+            rgb(0, 0, 0) 0px,
+            rgb(0, 0, 0) 19px,
+            transparent 19px,
+            transparent 22px
+          ),
+          repeating-linear-gradient(
+            148deg,
+            rgb(0, 0, 0) 0px,
+            rgb(0, 0, 0) 19px,
+            transparent 19px,
+            transparent 22px
+          ),
+          linear-gradient(90deg, rgb(255, 255, 250), rgb(240, 240, 240));
+        padding: 20px;
+        overflow-y: auto;
+      }
+
+      h1 {
+        color: #dfe7e2;
+      }
+
+      .typing-text {
+        font-size: 20px;
+        overflow: hidden;
+        max-width: 100%;
+        white-space: normal;
+        word-break: break-word;
+        text-align: center;
+        color: #dfe7e2;
+      }
+
+      @media (max-width: 600px) {
+        .typing-text {
+          font-size: 18px;
+        }
+      }
+
+      audio {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>ENCHANTED <br> <span>Song by Taylor Swift</span></h1>
+     
+    <div class="typing-text" id="typing"></div>
+    <audio id="background-music" autoplay loop>
+      <source src="Enchanted.mp3" type="audio/mpeg" />
+      Your browser does not support the audio element.
+    </audio>
+
+    <script>
+      const texts = [
+        "I was enchanted to meet you",
+        "Please don't be in love with someone else",
+        "Please don't have somebody waiting on you",
+        "Please don't be in love with someone else",
+        "Please don't have somebody waiting on you",
+        "This night is sparkling, don't you let it go",
+        "I'm wonderstruck, blushing all the way home",
+        "I'll spend forever wondering if you knew️"
+      ];
+
+      let index = 0;
+      const typingElement = document.getElementById("typing");
+      const typingSpeed = 200;
+
+      function typeText() {
+        if (index < texts.length) {
+          const paragraph = document.createElement("p");
+          paragraph.textContent = "";
+          typingElement.appendChild(paragraph);
+          let charIndex = 0;
+
+          function typeChar() {
+            if (charIndex < texts[index].length) {
+              paragraph.textContent += texts[index].charAt(charIndex);
+              charIndex++;
+              setTimeout(typeChar, typingSpeed);
+            } else {
+              index++;
+              if (index < texts.length) {
+                setTimeout(typeText, 1000);
+              }
+            }
+          }
+
+          typeChar();
+        }
+      }
+
+      typeText();
+    </script> 
+  </body>
+</html>
